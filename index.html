@@ -9,43 +9,76 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--panel:rgba(12,18,30,.92);--line:rgba(150,215,255,.16);--mint:#3df5c4;--red:#ff3d5a;--amber:#ffb340;--sky:#66ccff;--ink:#eaf1ff;--sub:#8e9ab4;--mono:"Chakra Petch","Noto Sans KR",sans-serif}
+:root{--panel:rgba(12,18,30,.92);--panel2:#0e1626;--line:rgba(150,215,255,.16);--mint:#3df5c4;--red:#ff3d5a;--amber:#ffb340;--sky:#66ccff;--ink:#eaf1ff;--sub:#8e9ab4;--mono:"Chakra Petch","Noto Sans KR",sans-serif}
 *{box-sizing:border-box}[hidden]{display:none!important}
 body{margin:0;min-height:100vh;color:var(--ink);font:15px/1.5 "Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;background:radial-gradient(ellipse at 50% -20%,#15283d,#070a10 60%) fixed #070a10}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--mint);outline-offset:2px}
 .wrap{max-width:1240px;margin:0 auto;padding:22px 18px 60px}
 header{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
 .k{color:var(--mint);font:700 11px var(--mono);letter-spacing:.2em}
-h1{margin:4px 0 0;font-size:24px;font-weight:900}
+h1{margin:4px 0 0;font-size:24px;font-weight:900}h2{margin:0 0 4px;font-size:17px}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .btn{padding:8px 14px;border:1px solid var(--line);background:var(--panel);font-size:14px;font-weight:700;cursor:pointer}
-.btn:hover{border-color:var(--mint)}.btn.pri{background:var(--mint);border-color:var(--mint);color:#032}.btn:disabled{opacity:.5;cursor:default}
+.btn:hover{border-color:var(--mint)}.btn:disabled{opacity:.5;cursor:default}
+.btn.pri{background:var(--mint);border-color:var(--mint);color:#032}.btn.warn{border-color:var(--amber);color:var(--amber)}.btn.danger{border-color:rgba(255,61,90,.6);color:var(--red)}
 .sm{display:flex;align-items:center;gap:6px;color:var(--sub);font-size:13px}
 .panel{background:var(--panel);border:1px solid var(--line)}
-#login{max-width:380px;margin:12vh auto 0;padding:26px}
-#login h2{margin:6px 0 16px;font-size:20px}
-#login input{width:100%;margin-bottom:10px;padding:12px 14px;border:1px solid rgba(150,215,255,.3);background:#0b0f19;font-size:16px}
+#login{max-width:420px;margin:12vh auto 0;padding:26px}#login h2{margin:6px 0 16px;font-size:20px}
+.pw{display:flex;gap:6px;margin-bottom:10px}.pw input{flex:1;min-width:0;padding:12px 14px;border:1px solid rgba(150,215,255,.3);background:#0b0f19;font-size:16px}
 .msg{min-height:22px;margin-bottom:8px;color:var(--red);font-size:14px;font-weight:700}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
-.card{padding:14px 16px}.card b{display:block;font:700 28px/1.2 var(--mono)}.card span{color:var(--sub);font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.card{padding:13px 15px}.card b{display:block;font:700 26px/1.2 var(--mono)}.card span{color:var(--sub);font-size:13px}
 .card.done b{color:var(--mint)}.card.run b{color:var(--sky)}.card.fail b{color:var(--red)}.card.chk b{color:var(--amber)}
+.tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.tab{padding:10px 18px;border:0;border-bottom:2px solid transparent;background:none;color:var(--sub);font-weight:700;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--mint);border-bottom-color:var(--mint)}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
 .bar input,.bar select{padding:8px 12px;border:1px solid var(--line);background:#0b0f19}.bar input{flex:1 1 200px}
 .chip{padding:6px 12px;border:1px solid var(--line);background:none;color:var(--sub);font-size:13px;font-weight:700;cursor:pointer}
 .chip.on{border-color:var(--mint);color:var(--mint);background:rgba(61,245,196,.1)}
-.tbl{overflow:auto;max-height:70vh}
-table{width:100%;min-width:900px;border-collapse:collapse}
+.tbl{overflow:auto;max-height:68vh}
+table{width:100%;min-width:880px;border-collapse:collapse}
 th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;font-size:14px}
-th{position:sticky;top:0;z-index:1;background:#0e1626;color:var(--sub);font-size:12px}
-tbody tr:hover{background:rgba(255,255,255,.03)}td.id{font-weight:700}td small{margin-left:6px;color:var(--sub)}
+th{position:sticky;top:0;z-index:1;background:var(--panel2);color:var(--sub);font-size:12px}
+tbody tr[data-id]{cursor:pointer}tbody tr[data-id]:hover{background:rgba(61,245,196,.05)}
+td.id button{padding:0;border:0;background:none;font-weight:700;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(61,245,196,.45);text-underline-offset:3px}
+td small{margin-left:6px;color:var(--sub)}
 .st{display:inline-block;padding:2px 10px;border:1px solid;font-size:12px;font-weight:700}
 .st.done{color:var(--mint);background:rgba(61,245,196,.1)}.st.run{color:var(--sky)}.st.fail{color:var(--red)}.st.stop{color:var(--sub)}
 .pg{display:inline-block;width:70px;height:6px;margin-right:6px;vertical-align:middle;background:rgba(255,255,255,.1)}.pg i{display:block;height:100%;background:var(--mint)}
-.flag{color:var(--amber);font-weight:700;cursor:help}
-.del{padding:3px 10px;border:1px solid rgba(255,61,90,.5);background:none;color:var(--red);font-size:12px;cursor:pointer}
-.empty{padding:40px;text-align:center;color:var(--sub)}
-.note{margin-top:12px;color:var(--sub);font-size:13px}
+.flag{color:var(--amber);font-weight:700}.okf{color:var(--mint);font-weight:700}
+.empty{padding:36px;text-align:center;color:var(--sub)}.note{margin-top:12px;color:var(--sub);font-size:13px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.box{padding:18px}.box .d{margin:0 0 12px;color:var(--sub);font-size:13px}
+.hb{display:grid;grid-template-columns:110px 1fr 96px;gap:10px;align-items:center;margin:8px 0;font-size:14px}
+.hb.q{grid-template-columns:minmax(150px,250px) 1fr 104px;font-size:13px}
+.hb>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hb .t{display:flex;height:12px;overflow:hidden;background:rgba(255,255,255,.08)}.hb .t i{height:100%}
+.hb em{font-style:normal;color:var(--sub);font-size:13px;text-align:right}
+.top3{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.top3 div{flex:1 1 200px;padding:10px 12px;border:1px solid rgba(255,61,90,.45);background:rgba(255,61,90,.08);font-size:14px}.top3 b{color:var(--red);font-family:var(--mono)}
+.qz{margin:16px 0 4px;color:var(--mint);font:700 11px var(--mono);letter-spacing:.14em}
+.lg{display:flex;flex-wrap:wrap;gap:12px;color:var(--sub);font-size:12px}.lg i{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px}
+.o{background:var(--mint)}.r{background:var(--amber)}.x{background:var(--red)}.n{background:rgba(255,255,255,.12)}
+#dim{position:fixed;inset:0;z-index:20;background:rgba(3,6,12,.6)}
+#dr{position:fixed;top:0;right:0;bottom:0;z-index:21;width:min(520px,100%);overflow:auto;padding:20px 22px 40px;background:#0b111d;border-left:1px solid var(--line);box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+.drh{display:flex;align-items:center;gap:10px;margin-bottom:14px}.drh h2{flex:1;margin:0;font-size:20px;overflow-wrap:anywhere}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kv div{padding:8px 10px;background:var(--panel2);border:1px solid var(--line)}.kv span{display:block;color:var(--sub);font-size:11px}.kv b{font-size:14px}
+.sec{margin:20px 0 8px;color:var(--mint);font:700 11px var(--mono);letter-spacing:.16em}
+.qg{display:grid;grid-template-columns:88px repeat(5,1fr);gap:4px;align-items:center;margin-top:8px;font-size:12px}
+.qg .c{height:30px;display:grid;place-items:center;font:700 12px var(--mono);color:#031}.qg .c.x{color:#fff}.qg .c.n{color:var(--sub)}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;margin-left:6px;padding:6px 0 6px 20px;border-left:2px solid var(--line);font-size:14px}
+.tl li::before{content:"";position:absolute;left:-6px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--sub)}
+.tl li.start::before{background:var(--sky)}.tl li.prog::before{background:var(--amber)}.tl li.done::before{background:var(--mint)}.tl li.fail::before{background:var(--red)}
+.tl li.at{margin:12px 0 2px;padding:0;border:0;color:var(--sub);font-size:12px;font-weight:700}.tl li.at::before{display:none}
+.tl small{margin-left:6px;color:var(--sub)}
+.alert{margin-bottom:8px;padding:12px 14px;border:1px solid var(--amber);background:rgba(255,179,64,.08);font-size:13px}.alert.ok{border-color:var(--mint);background:rgba(61,245,196,.06)}
+textarea{width:100%;min-height:76px;padding:10px;border:1px solid var(--line);background:#0b0f19;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+@media (max-width:640px){.wrap{padding:16px 12px 50px}.kv{grid-template-columns:repeat(2,1fr)}.hb{grid-template-columns:84px 1fr 84px}.hb.q{grid-template-columns:110px 1fr 84px}}
 </style>
 </head>
 <body>
@@ -60,77 +93,189 @@ tbody tr:hover{background:rgba(255,255,255,.03)}td.id{font-weight:700}td small{m
   <button class="btn" id="out" type="button">로그아웃</button>
  </div>
 </header>
+
 <form id="login" class="panel" autocomplete="off">
  <div class="k">ADMIN ACCESS</div><h2>관리자 비밀번호</h2>
- <input id="pw" type="password" placeholder="Apps Script에 설정한 비밀번호" aria-label="관리자 비밀번호">
+ <div class="pw"><input id="pw" type="password" placeholder="Code.gs의 ADMIN_KEY" aria-label="관리자 비밀번호"><button class="btn" id="eye" type="button" aria-pressed="false">보기</button></div>
  <div class="msg" id="lmsg" role="alert"></div>
  <button class="btn pri" type="submit" style="width:100%">접속</button>
 </form>
+
 <main id="app" hidden>
  <section class="cards" id="cards"></section>
- <div class="bar">
-  <input id="q" type="search" placeholder="아이디 검색" aria-label="아이디 검색">
-  <button class="chip" type="button" data-f="all"></button><button class="chip" type="button" data-f="done"></button><button class="chip" type="button" data-f="run"></button><button class="chip" type="button" data-f="fail"></button><button class="chip" type="button" data-f="stop"></button><button class="chip" type="button" data-f="chk"></button>
-  <select id="sort" aria-label="정렬"><option value="last">최근 활동순</option><option value="done">완료 시각순</option><option value="prog">진행도순</option><option value="id">아이디순</option></select>
+ <div class="tabs" role="tablist">
+  <button class="tab" id="tabP" type="button" role="tab" aria-selected="true" aria-controls="vP">참가자</button>
+  <button class="tab" id="tabS" type="button" role="tab" aria-selected="false" aria-controls="vS">통계</button>
  </div>
- <div class="tbl panel"><table><thead><tr><th>아이디</th><th>상태</th><th>진행</th><th>시도</th><th>완료 시각</th><th>소요</th><th>오답</th><th>비고</th><th>최근 활동</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
- <p class="note">‘중단’은 진행 중에 50분 넘게 활동이 없는 참가자(창을 닫은 경우)예요. ‘확인 필요’는 5분 미만 완료처럼 비정상적인 기록이니 구글 시트의 ‘로그’ 탭에서 확인해 주세요.</p>
+ <section id="vP" role="tabpanel" aria-labelledby="tabP">
+  <div class="bar">
+   <input id="q" type="search" placeholder="아이디 검색" aria-label="아이디 검색">
+   <button class="chip" type="button" data-f="all"></button><button class="chip" type="button" data-f="done"></button><button class="chip" type="button" data-f="run"></button><button class="chip" type="button" data-f="fail"></button><button class="chip" type="button" data-f="stop"></button><button class="chip" type="button" data-f="chk"></button>
+   <select id="sort" aria-label="정렬"><option value="last">최근 활동순</option><option value="done">완료 시각순</option><option value="prog">진행도순</option><option value="id">아이디순</option></select>
+  </div>
+  <div class="tbl panel"><table><thead><tr><th>아이디</th><th>상태</th><th>진행</th><th>시도</th><th>완료 시각</th><th>소요</th><th>오답</th><th>비고</th><th>최근 활동</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <p class="note">아이디를 누르면 상세 기록이 열려요. ‘중단’은 진행 중에 50분 넘게 활동이 없는 참가자(창을 닫은 경우)예요.</p>
+ </section>
+ <section id="vS" role="tabpanel" aria-labelledby="tabS" hidden>
+  <div class="grid2">
+   <div class="box panel"><h2>구역별 진행 현황</h2><p class="d">전체 참가자 중 각 구역을 통과한 인원</p><div id="fun"></div></div>
+   <div class="box panel"><h2>멈춘 구역</h2><p class="d">실패하거나 중단한 참가자가 마지막으로 머문 구역</p><div id="stopz"></div></div>
+  </div>
+  <div class="box panel" style="margin-top:12px"><h2>문제별 정답 현황</h2>
+   <p class="d">그 문제까지 도달한 참가자 중 첫 시도에 맞힌 비율이에요. 참가자마다 완료한 회차(완료 전이면 최근 회차)를 기준으로 해요.</p>
+   <div class="lg"><span><i class="o"></i>첫 시도 정답</span><span><i class="r"></i>다시 풀어 정답</span><span><i class="x"></i>못 맞힘</span></div>
+   <div id="qstat"></div></div>
+ </section>
 </main>
 </div>
+
+<div id="dim" hidden></div>
+<aside id="dr" hidden role="dialog" aria-modal="true" aria-labelledby="drId">
+ <div class="drh"><h2 id="drId"></h2><span id="drSt"></span><button class="btn" id="drX" type="button">닫기</button></div>
+ <div class="kv" id="drKv"></div>
+ <div id="drFlag"></div>
+ <div class="sec">20문제 풀이 결과</div>
+ <div class="lg"><span><i class="o"></i>첫 시도 정답</span><span><i class="r"></i>다시 풀어 정답</span><span><i class="x"></i>못 맞힘</span><span><i class="n"></i>도달 전</span></div>
+ <div id="drQ"></div>
+ <div class="sec">시간순 기록</div>
+ <ul class="tl" id="drLog"></ul>
+ <div class="sec">메모</div>
+ <textarea id="drMemo" maxlength="200" placeholder="예: 3번 문제 질문함 · 수료증 발급 완료" aria-label="메모"></textarea>
+ <div class="row"><button class="btn pri" id="drSave" type="button">메모 저장</button><span class="sm" id="drMsg"></span></div>
+ <div class="sec">관리</div>
+ <button class="btn danger" id="drDel" type="button">이 기록 삭제 (로그 포함)</button>
+</aside>
+
 <script>
 'use strict';
-const SERVER_URL='https://script.google.com/macros/s/AKfycbzrh-W9T_82uOdn7gdiVMuJci9vp4ncWzoRWE2iXV1m9oniB0JMksqv15yeyRy0Cnw8Zg/exec';   // ★ 게임(PART 6)에 넣은 것과 같은 Apps Script 웹 앱 주소
-const $=id=>document.getElementById(id),LABEL={done:'완료',run:'진행 중',fail:'실패',stop:'중단'};
-let KEY='',ROWS=[],F='all',T=null,NOW=Date.now();
+const SERVER_URL='https://script.google.com/macros/s/AKfycbzrh-W9T_82uOdn7gdiVMuJci9vp4ncWzoRWE2iXV1m9oniB0JMksqv15yeyRy0Cnw8Zg/exec';   // ★ 게임(PART 6 v2)에 넣은 것과 같은 Apps Script 웹 앱 주소
+const $=id=>document.getElementById(id),LABEL={done:'완료',run:'진행 중',fail:'실패',stop:'중단'},ZONES=['동래읍성','동래시장','온천천','자원봉사센터'];
+const QT=['자원봉사의 자발성','책임감 있는 봉사자','무보수성','비밀유지 의무','해서는 안 되는 행동','자원봉사에 대한 설명','자원봉사의 가장 중요한 가치','봉사자와 지역사회의 성장','과정과 태도 (O/X)','의미와 거리가 먼 것',
+ '1365 포털 신청 방법','참여가 어려워졌을 때','봉사활동 선택 기준','업사이클','장애인 지원 봉사','사고 발생 시 먼저 할 일','안전 수칙','안전보다 봉사? (O/X)','사용법을 모르는 도구','자원봉사의 책임'];
+const QS={o:'첫 시도 정답',r:'다시 풀어 정답',x:'못 맞힘','.':'도달 전'};
+const AUTH='비밀번호가 맞지 않아요. Code.gs에서 비밀번호를 바꿨다면 ‘배포 관리 → 수정 → 새 버전’으로 다시 배포했는지 확인해 주세요.';
+let KEY='',ROWS=[],F='all',T=null,NOW=Date.now(),CUR=null;
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ts=v=>{if(!v)return 0;const t=new Date(v).getTime();return isNaN(t)?0:t};
-const fd=v=>{const t=ts(v);return t?new Date(t).toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'-'};
+const fd=(v,o)=>{const t=ts(v);return t?new Date(t).toLocaleString('ko-KR',o||{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'-'};
 const state=x=>x.st==='완료'?'done':x.st==='실패'?'fail':NOW-ts(x.last)>50*60000?'stop':'run';
+const qsOk=x=>/^[orx.]{20}$/.test(x.qs||'');
 const ss=(k,v)=>{try{if(v===undefined)return sessionStorage.getItem(k)||'';if(v===null)sessionStorage.removeItem(k);else sessionStorage.setItem(k,v)}catch(e){return ''}};
 async function api(b){const r=await fetch(SERVER_URL,{method:'POST',body:JSON.stringify(Object.assign({key:KEY},b))});return r.json()}
 
+/* ---------- 접속 · 불러오기 ---------- */
 async function login(k){KEY=k;$('lmsg').textContent='확인 중…';
  try{const j=await api({act:'list'});
-  if(!j.ok){$('lmsg').textContent=j.err==='auth'?'비밀번호가 맞지 않아요.':'서버 오류 ('+j.err+')';KEY='';ss('dn-admin',null);return}
+  if(!j.ok){$('lmsg').textContent=j.err==='auth'?AUTH:'서버 오류 ('+j.err+')';KEY='';ss('dn-admin',null);return}
   ss('dn-admin',k);$('login').hidden=true;$('app').hidden=$('tools').hidden=false;take(j)}
- catch(e){$('lmsg').textContent='서버에 연결하지 못했어요. SERVER_URL과 배포 설정을 확인해 주세요.'}}
-function take(j){ROWS=j.rows||[];NOW=ts(j.now)||Date.now();render();$('upd').textContent='갱신 '+new Date().toLocaleTimeString('ko-KR')}
+ catch(e){$('lmsg').textContent='서버에 연결하지 못했어요. SERVER_URL과 배포 설정(액세스: 모든 사용자)을 확인해 주세요.'}}
+function take(j){ROWS=j.rows||[];NOW=ts(j.now)||Date.now();render();
+ if(CUR){const x=ROWS.find(r=>r.id===CUR);if(x)fill(x,false);else closeDr()}
+ $('upd').textContent='갱신 '+new Date().toLocaleTimeString('ko-KR')}
 async function load(){$('upd').textContent='불러오는 중…';
- try{const j=await api({act:'list'});if(!j.ok){if(j.err==='auth')return logout('비밀번호가 바뀌었어요. 다시 접속해 주세요.');throw 0}take(j)}
+ try{const j=await api({act:'list'});if(!j.ok){if(j.err==='auth')return logout(AUTH);throw 0}take(j)}
  catch(e){$('upd').textContent='⚠ 불러오기 실패'}}
-function logout(m){KEY='';ss('dn-admin',null);clearInterval(T);T=null;$('auto').checked=false;$('app').hidden=$('tools').hidden=true;$('login').hidden=false;$('pw').value='';$('lmsg').textContent=m||''}
+function logout(m){KEY='';ss('dn-admin',null);clearInterval(T);T=null;$('auto').checked=false;closeDr();
+ $('app').hidden=$('tools').hidden=true;$('login').hidden=false;$('pw').value='';$('lmsg').textContent=m||''}
 
-function render(){const q=$('q').value.trim().toLowerCase(),c={all:ROWS.length,done:0,run:0,fail:0,stop:0,chk:0};
- ROWS.forEach(x=>{c[state(x)]++;if(x.flag)c.chk++});
+/* ---------- 요약 카드 · 참가자 표 ---------- */
+function render(){const c={all:ROWS.length,done:0,run:0,fail:0,stop:0,chk:0};
+ ROWS.forEach(x=>{c[state(x)]++;if(x.flag==='확인 필요')c.chk++});
  const m=ROWS.filter(x=>x.st==='완료'&&+x.mins>0).map(x=>+x.mins),avg=m.length?(m.reduce((a,b)=>a+b,0)/m.length).toFixed(1)+'분':'-';
  $('cards').innerHTML=[['','전체 참가자',c.all],['done','완료',c.done],['run','진행 중',c.run],['fail','실패',c.fail],['','중단',c.stop],
   ['done','완료율',c.all?Math.round(c.done/c.all*100)+'%':'-'],['','평균 소요',avg],['chk','확인 필요',c.chk]]
   .map(k=>'<div class="card panel '+k[0]+'"><b>'+k[2]+'</b><span>'+k[1]+'</span></div>').join('');
  document.querySelectorAll('.chip').forEach(b=>{const f=b.dataset.f;b.classList.toggle('on',f===F);b.textContent=(f==='all'?'전체':f==='chk'?'확인 필요':LABEL[f])+' '+c[f]});
- const so=$('sort').value,list=ROWS.filter(x=>(F==='all'||(F==='chk'?!!x.flag:state(x)===F))&&(!q||String(x.id).toLowerCase().includes(q)));
+ table();stats()}
+function table(){const q=$('q').value.trim().toLowerCase(),so=$('sort').value;
+ const list=ROWS.filter(x=>(F==='all'||(F==='chk'?x.flag==='확인 필요':state(x)===F))&&(!q||String(x.id).toLowerCase().includes(q)));
  list.sort((a,b)=>so==='id'?String(a.id).localeCompare(String(b.id),'ko'):so==='done'?ts(b.doneAt)-ts(a.doneAt):so==='prog'?(+b.solved||0)-(+a.solved||0):ts(b.last)-ts(a.last));
  $('tb').innerHTML=list.length?list.map(x=>{const s=state(x),p=Math.min(20,+x.solved||0),d=x.st==='완료';
-  return '<tr><td class="id">'+esc(x.id)+'</td><td><span class="st '+s+'">'+LABEL[s]+'</span></td>'+
+  const note=(x.flag==='확인 필요'?'<span class="flag">⚠ 확인 필요</span>':x.flag==='확인 완료'?'<span class="okf">✓ 확인 완료</span>':'')+(x.memo?' <span title="'+esc(x.memo)+'">📝</span>':'');
+  return '<tr data-id="'+esc(x.id)+'"><td class="id"><button type="button">'+esc(x.id)+'</button></td><td><span class="st '+s+'">'+LABEL[s]+'</span></td>'+
    '<td><span class="pg"><i style="width:'+p*5+'%"></i></span>'+p+'/20<small>'+esc(x.zone)+'</small></td><td>'+(+x.n||0)+'회</td>'+
-   '<td>'+(d?fd(x.doneAt):'-')+'</td><td>'+(d?esc(x.mins)+'분':'-')+'</td><td>'+(d?(+x.wrong||0)+'회':'-')+'</td>'+
-   '<td>'+(x.flag?'<span class="flag" title="5분 미만 완료 또는 구역 기록 누락 — 시트의 로그 탭에서 확인">⚠ '+esc(x.flag)+'</span>':'')+'</td>'+
-   '<td>'+fd(x.last)+'</td><td><button type="button" class="del" data-id="'+esc(x.id)+'">삭제</button></td></tr>'}).join('')
-  :'<tr><td colspan="10" class="empty">'+(ROWS.length?'조건에 맞는 기록이 없어요.':'아직 참가 기록이 없어요.')+'</td></tr>'}
+   '<td>'+(d?fd(x.doneAt):'-')+'</td><td>'+(d?esc(x.mins)+'분':'-')+'</td><td>'+(+x.wrong||0)+'회</td><td>'+note+'</td><td>'+fd(x.last)+'</td></tr>'}).join('')
+  :'<tr><td colspan="9" class="empty">'+(ROWS.length?'조건에 맞는 기록이 없어요.':'아직 참가 기록이 없어요.')+'</td></tr>'}
 
+/* ---------- 통계 : 구역별 진행 · 멈춘 구역 · 문제별 정답률 ---------- */
+function stats(){const n=ROWS.length,
+  bar=(lab,v,tot,col)=>{const p=tot?Math.round(v/tot*100):0;return '<div class="hb"><span>'+lab+'</span><span class="t"><i style="width:'+p+'%;background:'+col+'"></i></span><em>'+v+'명 · '+p+'%</em></div>'};
+ $('fun').innerHTML=n?ZONES.map((z,k)=>bar(z,ROWS.filter(x=>(+x.solved||0)>=5*(k+1)).length,n,'var(--mint)')).join('')+bar('최종 완료',ROWS.filter(x=>x.st==='완료').length,n,'var(--sky)')
+  :'<p class="empty">아직 기록이 없어요.</p>';
+ const stp=ROWS.filter(x=>{const s=state(x);return s==='fail'||s==='stop'}),zc=[0,0,0,0];
+ stp.forEach(x=>{zc[Math.min(3,Math.floor((+x.solved||0)/5))]++});
+ $('stopz').innerHTML=stp.length?ZONES.map((z,k)=>bar(z,zc[k],stp.length,'var(--red)')).join(''):'<p class="empty">실패하거나 중단한 참가자가 없어요.</p>';
+ const qr=ROWS.filter(qsOk);
+ if(!qr.length){$('qstat').innerHTML='<p class="empty">문제별 기록이 아직 없어요. PART 6 v2를 적용한 뒤 플레이한 기록부터 집계돼요.</p>';return}
+ const Z=QT.map((t,i)=>{let o=0,r=0,x=0;qr.forEach(y=>{const c=y.qs.charAt(i);if(c==='o')o++;else if(c==='r')r++;else if(c==='x')x++});const reach=o+r+x;return {i,t,o,r,x,reach,rate:reach?o/reach:1}});
+ const worst=Z.filter(s=>s.reach&&s.rate<1).sort((a,b)=>a.rate-b.rate||b.reach-a.reach).slice(0,3);
+ let h=worst.length?'<div class="top3">'+worst.map((s,k)=>'<div><b>많이 틀린 문제 '+(k+1)+' · Q'+(s.i+1)+'</b><br>'+esc(s.t)+'<br><span class="sm">첫 시도 정답률 '+Math.round(s.rate*100)+'% · 도달 '+s.reach+'명</span></div>').join('')+'</div>':'';
+ Z.forEach(s=>{if(s.i%5===0)h+='<div class="qz">'+ZONES[s.i/5]+'</div>';const w=v=>(v/s.reach*100).toFixed(1);
+  h+='<div class="hb q"><span title="'+esc(s.t)+'">Q'+(s.i+1)+' · '+esc(s.t)+'</span><span class="t">'+
+   (s.reach?'<i class="o" style="width:'+w(s.o)+'%"></i><i class="r" style="width:'+w(s.r)+'%"></i><i class="x" style="width:'+w(s.x)+'%"></i>':'')+
+   '</span><em>'+(s.reach?Math.round(s.rate*100)+'% · '+s.reach+'명':'도달 없음')+'</em></div>'});
+ $('qstat').innerHTML=h}
+
+/* ---------- 참가자 상세 창 ---------- */
+function openDr(id){const x=ROWS.find(r=>r.id===id);if(!x)return;CUR=id;$('dim').hidden=$('dr').hidden=false;document.body.style.overflow='hidden';
+ $('drMemo').value=x.memo||'';$('drMsg').textContent='';fill(x,true);$('drX').focus()}
+function closeDr(){CUR=null;$('dim').hidden=$('dr').hidden=true;document.body.style.overflow=''}
+function fill(x,withLog){const s=state(x),d=x.st==='완료';
+ $('drId').textContent=x.id;$('drSt').innerHTML='<span class="st '+s+'">'+LABEL[s]+'</span>';
+ $('drKv').innerHTML=[['시도',(+x.n||0)+'회'],['진행',Math.min(20,+x.solved||0)+'/20'],['오답',(+x.wrong||0)+'회'],['최초 시작',fd(x.first)],['완료 시각',d?fd(x.doneAt):'-'],
+  ['최근 활동',fd(x.last)],['실제 소요',d?esc(x.mins)+'분':'-'],['타이머 사용',d?esc(x.used):'-'],['남은 시간',d?esc(x.left):'-']]
+  .map(k=>'<div><span>'+k[0]+'</span><b>'+k[1]+'</b></div>').join('');
+ $('drFlag').innerHTML=x.flag==='확인 필요'?'<div class="alert">⚠ <b>확인 필요</b> · 5분 미만 완료나 구역 기록 누락처럼 평소와 다른 완료 기록이에요. 아래 시간순 기록을 보고 문제가 없으면 확인 완료로 처리하세요.<div class="row"><button class="btn warn" id="drOk" type="button">확인 완료로 처리</button></div></div>'
+  :x.flag==='확인 완료'?'<div class="alert ok">✓ 관리자가 확인 완료한 기록이에요.</div>':'';
+ const q=qsOk(x)?x.qs:'';
+ $('drQ').innerHTML=q?'<div class="qg">'+ZONES.map((z,k)=>'<span>'+z+'</span>'+[0,1,2,3,4].map(j=>{const i=k*5+j,c=q.charAt(i);
+   return '<span class="c '+(c==='.'?'n':c)+'" title="Q'+(i+1)+' '+esc(QT[i])+' · '+QS[c]+'">'+(i+1)+'</span>'}).join('')).join('')+'</div>'
+  :'<p class="sm">문제별 기록이 없어요. PART 6 v2 적용 전의 기록이거나, 아직 첫 구역을 마치기 전이에요.</p>';
+ if(withLog)loadLog(x.id)}
+async function loadLog(id){const ul=$('drLog');ul.innerHTML='<li class="at">불러오는 중…</li>';
+ try{const j=await api({act:'log',id});if(CUR!==id)return;if(!j.ok)throw 0;
+  const L=(j.log||[]).slice().sort((a,b)=>ts(a.t)-ts(b.t));if(!L.length){ul.innerHTML='<li class="at">기록이 없어요.</li>';return}
+  let h='',n=0,prev=0;
+  L.forEach(e=>{const t=ts(e.t),gap=prev&&e.ev!=='start'?Math.round((t-prev)/60000):null;
+   if(e.ev==='start'){n++;h+='<li class="at">시도 '+n+' · '+fd(e.t,{year:'numeric',month:'2-digit',day:'2-digit'})+'</li>'}
+   const lab=e.ev==='start'?'▶ 시작':e.ev==='prog'?'◆ '+esc(e.zone||'구역 완료'):e.ev==='done'?'★ 최종 성공':e.ev==='fail'?'✕ 시간 초과':esc(e.ev);
+   h+='<li class="'+esc(e.ev)+'">'+fd(e.t,{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' '+lab+
+    (e.ev!=='start'?'<small>진행 '+(+e.solved||0)+'/20 · 오답 '+(+e.wrong||0)+'</small>':'')+(gap!=null?'<small>+'+gap+'분</small>':'')+'</li>';prev=t});
+  ul.innerHTML=h}
+ catch(err){if(CUR===id)ul.innerHTML='<li class="at">⚠ 기록을 불러오지 못했어요. Code.gs v2가 새 버전으로 배포됐는지 확인해 주세요.</li>'}}
+async function markOk(b){if(!CUR)return;const id=CUR;b.disabled=true;
+ try{const j=await api({act:'note',id,ok:true});if(!j.ok)throw 0;const x=ROWS.find(r=>r.id===id);if(x){x.flag='확인 완료';render();if(CUR===id)fill(x,false)}}
+ catch(e){alert('처리하지 못했어요. Code.gs v2가 새 버전으로 배포됐는지 확인해 주세요.');b.disabled=false}}
+async function saveMemo(){if(!CUR)return;const id=CUR,memo=$('drMemo').value.trim(),b=$('drSave');b.disabled=true;$('drMsg').textContent='저장 중…';
+ try{const j=await api({act:'note',id,memo});if(!j.ok)throw 0;const x=ROWS.find(r=>r.id===id);if(x)x.memo=memo;table();if(CUR===id)$('drMsg').textContent='✓ 저장했어요'}
+ catch(e){if(CUR===id)$('drMsg').textContent='⚠ 저장하지 못했어요'}finally{b.disabled=false}}
+async function delRec(){if(!CUR)return;const id=CUR;if(!confirm('「'+id+'」 기록과 로그를 모두 삭제할까요? 되돌릴 수 없어요.'))return;const b=$('drDel');b.disabled=true;
+ try{const j=await api({act:'del',id});if(!j.ok)throw 0;ROWS=ROWS.filter(x=>x.id!==id);closeDr();render()}
+ catch(e){alert('삭제하지 못했어요. 다시 시도해 주세요.')}finally{b.disabled=false}}
+
+/* ---------- CSV (엑셀 한글 깨짐 방지 · Q1~Q20 포함) ---------- */
+function csv(){const f=v=>{const t=ts(v);return t?new Date(t).toLocaleString('ko-KR'):''},q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"',SY={o:'○',r:'△',x:'×','.':'-'};
+ const H=['아이디','상태','시도','진행(문제)','구역','최초 시작','최근 시작','완료 시각','실제 소요(분)','타이머 사용','남은 시간','오답','확인','메모','최근 활동'].concat(QT.map((t,i)=>'Q'+(i+1)));
+ const L=[H.map(q).join(',')].concat(ROWS.map(x=>[x.id,LABEL[state(x)],x.n,x.solved,x.zone,f(x.first),f(x.start),f(x.doneAt),x.mins,x.used,x.left,x.wrong,x.flag,x.memo,f(x.last)]
+  .concat(QT.map((t,i)=>qsOk(x)?SY[x.qs.charAt(i)]:'')).map(q).join(',')));
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+L.join('\r\n')],{type:'text/csv;charset=utf-8'}));
+ a.download='참가기록_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+
+/* ---------- 이벤트 · 시작 ---------- */
+function tab(st){$('tabP').setAttribute('aria-selected',String(!st));$('tabS').setAttribute('aria-selected',String(st));$('vP').hidden=st;$('vS').hidden=!st}
 $('login').addEventListener('submit',e=>{e.preventDefault();const k=$('pw').value.trim();if(k)login(k)});
-$('q').addEventListener('input',render);$('sort').addEventListener('change',render);
+$('eye').addEventListener('click',()=>{const p=$('pw'),show=p.type==='password';p.type=show?'text':'password';$('eye').textContent=show?'숨기기':'보기';$('eye').setAttribute('aria-pressed',String(show))});
+$('q').addEventListener('input',table);$('sort').addEventListener('change',table);
 document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{F=b.dataset.f;render()}));
-$('ref').addEventListener('click',load);$('out').addEventListener('click',()=>logout());
+$('tabP').addEventListener('click',()=>tab(false));$('tabS').addEventListener('click',()=>tab(true));
+$('ref').addEventListener('click',load);$('out').addEventListener('click',()=>logout());$('csv').addEventListener('click',csv);
 $('auto').addEventListener('change',e=>{clearInterval(T);T=e.target.checked?setInterval(load,30000):null});
-$('tb').addEventListener('click',async e=>{const b=e.target.closest('.del');if(!b)return;const id=b.dataset.id;
- if(!confirm('「'+id+'」 기록을 삭제할까요? 되돌릴 수 없어요.'))return;b.disabled=true;
- try{const j=await api({act:'del',id});if(!j.ok)throw 0;ROWS=ROWS.filter(x=>x.id!==id);render()}catch(err){alert('삭제하지 못했어요. 다시 시도해 주세요.');b.disabled=false}});
-$('csv').addEventListener('click',()=>{const f=v=>{const t=ts(v);return t?new Date(t).toLocaleString('ko-KR'):''},q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
- const H=['아이디','상태','시도','진행(문제)','구역','최초 시작','완료 시각','실제 소요(분)','타이머 사용','남은 시간','오답','확인 필요','최근 활동'];
- const L=[H.map(q).join(',')].concat(ROWS.map(x=>[x.id,LABEL[state(x)],x.n,x.solved,x.zone,f(x.first),f(x.doneAt),x.mins,x.used,x.left,x.wrong,x.flag,f(x.last)].map(q).join(',')));
- const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+L.join('\r\n')],{type:'text/csv;charset=utf-8'}));   // 엑셀 한글 깨짐 방지
- a.download='참가기록_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)});
-if(!SERVER_URL){$('lmsg').textContent='admin.html의 SERVER_URL에 Apps Script 웹 앱 주소를 넣어 주세요.';$('login').querySelector('button').disabled=true}
+$('tb').addEventListener('click',e=>{const tr=e.target.closest('tr[data-id]');if(tr)openDr(tr.dataset.id)});
+$('dim').addEventListener('click',closeDr);$('drX').addEventListener('click',closeDr);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&CUR)closeDr()});
+$('drFlag').addEventListener('click',e=>{if(e.target.id==='drOk')markOk(e.target)});
+$('drSave').addEventListener('click',saveMemo);$('drDel').addEventListener('click',delRec);
+if(!SERVER_URL){$('lmsg').textContent='admin.html의 SERVER_URL에 Apps Script 웹 앱 주소를 넣어 주세요.';$('login').querySelector('button[type="submit"]').disabled=true}
 else{const k=ss('dn-admin');if(k)login(k)}
 </script>
 </body>
